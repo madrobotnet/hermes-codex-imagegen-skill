@@ -1,5 +1,5 @@
 ---
-name: codex-imagegen-chatgpt-oauth
+name: codex-imagegen-via-chatgpt-oauth
 description: Use a separate Codex CLI instance logged in via ChatGPT / OpenAI Codex OAuth to generate an image with Codex's built-in imagegen skill, then verify the saved PNG from ~/.codex/generated_images.
 version: 1.1.0
 author: Hermes Agent

@@ -43,13 +43,15 @@ So this is not a generic OpenAI Images API wrapper. It is a **Codex CLI workarou
 - `LICENSE` — MIT license
 - `.gitignore` — minimal repo hygiene
 
-## Current skill slug
+## Published skill slug
 
-The skill file currently uses this slug:
+For the published repo copy, I recommend this **skill** slug:
 
 ```text
-codex-imagegen-chatgpt-oauth
+codex-imagegen-via-chatgpt-oauth
 ```
+
+It reads better than `codex-imagegen-chatgpt-oauth` and still keeps the auth mechanism explicit.
 
 ## Naming recommendation
 
