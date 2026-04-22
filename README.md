@@ -1,5 +1,10 @@
 # hermes-codex-imagegen-skill
 
+![Hermes Skill](https://img.shields.io/badge/Hermes-Skill-6f42c1)
+![Platform CLI](https://img.shields.io/badge/Platform-CLI-0a66c2)
+![Codex CLI](https://img.shields.io/badge/Codex-CLI-10a37f)
+![License MIT](https://img.shields.io/badge/License-MIT-green.svg)
+
 > GitHub repository READMEs do not support JavaScript UI toggles. This README uses GitHub-native `<details>` blocks as the toggle mechanism.
 
 <details open>
@@ -10,6 +15,13 @@
 A **Hermes Agent skill** for **CLI-based** image generation through a separate **Codex CLI** process authenticated with **ChatGPT / OpenAI Codex OAuth**.
 
 This skill exists for the case where Hermes' native image backend is unavailable, but `codex` is installed and already logged in.
+
+## TL;DR
+
+- a CLI-only fallback for Hermes users who already have a working Codex login
+- runs `codex exec` in a separate process instead of touching Hermes' native image backend
+- verifies the real PNG output from `~/.codex/generated_images/`
+- useful when you want a practical Codex-based imagegen workaround, not an API-native integration
 
 ## Why this is CLI-based
 
@@ -87,6 +99,13 @@ If you want to use a generated file in a real project, copy it into the project 
 핵심 아이디어는 **ChatGPT / OpenAI Codex OAuth로 로그인된 별도 Codex CLI 프로세스**를 이용해 이미지를 생성하는 것이다.
 
 Hermes의 기본 이미지 백엔드를 바로 쓰기 어려운 상황에서, 로컬에 `codex`가 설치되어 있고 이미 로그인까지 되어 있을 때 쓰는 우회 워크플로우다.
+
+## TL;DR
+
+- Codex 로그인만 이미 되어 있으면 바로 써먹을 수 있는 CLI 전용 fallback
+- Hermes 기본 이미지 백엔드는 안 건드리고, 별도 `codex exec` 프로세스로 우회함
+- 실제 결과물은 `~/.codex/generated_images/`에서 다시 검증함
+- OpenAI Images API 통합이 아니라, 실용적인 Codex 기반 imagegen workaround에 가깝다
 
 ## 왜 CLI 기반인가
 
