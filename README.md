@@ -1,5 +1,12 @@
 # hermes-codex-imagegen-skill
 
+> GitHub repository READMEs do not support JavaScript UI toggles. This README uses GitHub-native `<details>` blocks as the toggle mechanism.
+
+<details open>
+<summary><strong>English</strong></summary>
+
+## Overview
+
 A **Hermes Agent skill** for **CLI-based** image generation through a separate **Codex CLI** process authenticated with **ChatGPT / OpenAI Codex OAuth**.
 
 This skill exists for the case where Hermes' native image backend is unavailable, but `codex` is installed and already logged in.
@@ -20,8 +27,8 @@ So this is not a generic OpenAI Images API wrapper. It is a **Codex CLI workarou
 - launches a separate Codex CLI instance
 - asks Codex to generate an image using its built-in `imagegen` skill
 - captures the Codex session id
-- re-verifies the actual output file from Hermes side
-- warns that `bwrap` / sandbox inspection errors do not always mean the image generation failed
+- re-verifies the actual output file from the Hermes side
+- warns that `bwrap` or sandbox inspection errors do not always mean the image generation failed
 
 ## What it does not do
 
@@ -34,44 +41,21 @@ So this is not a generic OpenAI Images API wrapper. It is a **Codex CLI workarou
 - Hermes Agent
 - Codex CLI installed and on `PATH`
 - active ChatGPT / OpenAI Codex OAuth login
-- a Linux/macOS shell environment where `codex exec` can run
+- a Linux or macOS shell environment where `codex exec` can run
 
 ## Repository contents
 
 - `SKILL.md` — the Hermes skill itself
-- `README.md` — publish-facing overview
+- `README.md` — public overview
 - `LICENSE` — MIT license
 - `.gitignore` — minimal repo hygiene
 
-## Published skill slug
+## Published names
 
-For the published repo copy, I recommend this **skill** slug:
+- **Repository name:** `hermes-codex-imagegen-skill`
+- **Skill slug:** `codex-imagegen-via-chatgpt-oauth`
 
-```text
-codex-imagegen-via-chatgpt-oauth
-```
-
-It reads better than `codex-imagegen-chatgpt-oauth` and still keeps the auth mechanism explicit.
-
-## Naming recommendation
-
-For GitHub, I recommend the **repository** name:
-
-```text
-hermes-codex-imagegen-skill
-```
-
-Why:
-- shorter than `hermes-codex-imagegen-chatgpt-oauth`
-- still clearly tied to Hermes
-- makes the repo purpose obvious at a glance
-- keeps the implementation detail (`chatgpt-oauth`) inside the docs instead of bloating the repo slug
-
-If you later want to rename the **skill** slug too, a cleaner option would be:
-
-```text
-codex-imagegen-via-chatgpt-oauth
-```
+The repository name stays short and readable. The skill slug stays more explicit because the auth path matters for execution.
 
 ## Quick publish flow
 
@@ -84,10 +68,90 @@ gh repo create hermes-codex-imagegen-skill --public --source . --push
 
 ## Notes
 
-The generated image files normally land under:
+Generated image files normally land under:
 
 ```text
 ~/.codex/generated_images/<session_id>/...
 ```
 
 If you want to use a generated file in a real project, copy it into the project after verification instead of leaving it only under `.codex`.
+
+</details>
+
+<details>
+<summary><strong>한국어</strong></summary>
+
+## 개요
+
+이 저장소는 **Hermes Agent용 스킬**이고, **CLI 기반**으로 동작한다.  
+핵심 아이디어는 **ChatGPT / OpenAI Codex OAuth로 로그인된 별도 Codex CLI 프로세스**를 이용해 이미지를 생성하는 것이다.
+
+Hermes의 기본 이미지 백엔드를 바로 쓰기 어려운 상황에서, 로컬에 `codex`가 설치되어 있고 이미 로그인까지 되어 있을 때 쓰는 우회 워크플로우다.
+
+## 왜 CLI 기반인가
+
+이 워크플로우는 다음 전제에 의존한다.
+
+- 로컬 `codex` 실행 파일
+- `codex login status`
+- `codex exec --skip-git-repo-check --ephemeral ...`
+- `~/.codex/generated_images/` 아래에 저장된 PNG 결과 검증
+
+즉, 이건 일반적인 OpenAI Images API 래퍼가 아니다.  
+**Codex CLI를 활용하는 이미지 생성 우회 워크플로우**를 Hermes 스킬 형태로 정리한 것이다.
+
+## 하는 일
+
+- 별도의 Codex CLI 인스턴스를 실행함
+- Codex의 내장 `imagegen` 스킬로 이미지 생성을 시도함
+- Codex session id를 캡처함
+- Hermes 쪽에서 실제 생성 파일을 다시 검증함
+- `bwrap` 또는 샌드박스 파일 조회 에러가 곧 생성 실패를 뜻하지는 않는다는 점을 문서화함
+
+## 하지 않는 일
+
+- Hermes의 기본 `image_generate` 도구 백엔드를 바꾸지 않음
+- OpenAI Images API를 직접 호출하지 않음
+- Codex 로그인 필요성을 없애주지 않음
+
+## 요구 사항
+
+- Hermes Agent
+- `PATH`에 잡힌 Codex CLI
+- 활성화된 ChatGPT / OpenAI Codex OAuth 로그인
+- `codex exec`를 실행할 수 있는 Linux 또는 macOS 셸 환경
+
+## 저장소 구성
+
+- `SKILL.md` — 실제 Hermes 스킬 파일
+- `README.md` — 공개용 안내 문서
+- `LICENSE` — MIT 라이선스
+- `.gitignore` — 최소한의 저장소 정리용 파일
+
+## 공개 이름
+
+- **저장소 이름:** `hermes-codex-imagegen-skill`
+- **스킬 slug:** `codex-imagegen-via-chatgpt-oauth`
+
+저장소 이름은 짧고 읽기 쉽게 두고, 스킬 slug는 실행 방식이 중요하므로 더 구체적으로 유지했다.
+
+## 빠른 공개 예시
+
+```bash
+git init
+git add .
+git commit -m "Prepare the Hermes Codex image generation skill for publication"
+gh repo create hermes-codex-imagegen-skill --public --source . --push
+```
+
+## 참고
+
+생성된 이미지 파일은 보통 아래 경로에 떨어진다.
+
+```text
+~/.codex/generated_images/<session_id>/...
+```
+
+실제 프로젝트에서 써야 하는 이미지는 검증 후에 프로젝트 폴더로 복사해서 쓰는 게 맞다. `.codex` 내부에만 남겨두고 참조하면 관리가 지저분해진다.
+
+</details>
