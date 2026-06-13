@@ -4,6 +4,7 @@ description: Use a separate Codex CLI instance logged in via ChatGPT / OpenAI Co
 version: 1.1.0
 author: Hermes Agent
 license: MIT
+metadata.hermes.tags: []
 ---
 
 # Codex image generation via ChatGPT OAuth
